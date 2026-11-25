@@ -6,6 +6,11 @@
 <title>Orbit FPS</title>
 </head>
 <body style="margin:0;background:#0b0d12">
-<script type="module" src="srv/game.js"></script>
+<script type="module">
+// Discord側でgame.jsが古いまま残らないように、毎回ちがうURLで読み込む
+import("./srv/game.js?v=" + Date.now()).catch(e => {
+  document.body.insertAdjacentHTML("beforeend", '<p style="color:#fff;font-family:sans-serif;padding:20px">ゲームの読み込みに失敗しました: ' + String(e && e.message || e) + '</p>');
+});
+</script>
 </body>
 </html>
